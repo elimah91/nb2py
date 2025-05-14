@@ -126,6 +126,14 @@ def main():
 
     convert(input_file, output_file)
     print(f'Converted {input_file} to {output_file}')
+    print(f 'Now opening {output_file})
+          
+    try:
+        subprocess.run(["code", output_file], check=True)
+    except FileNotFoundError:
+        print("VS Code 'code' command not found. Please ensure it's installed in PATH.")
+    except Exception as e:
+        print(f"Failed to open file in VS Code: {e}")
 
 if __name__ == '__main__':
     main()
